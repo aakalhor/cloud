@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package shop;
+
+option go_package = "./pkg/pb/grpc";
+
+service ShopService {
+  rpc Create(CreateOrderReq) returns (CreateOrderRes) {}
+  rpc Cancel(CancelOrderReq) returns (CancelOrderRes) {}
+  rpc GetByUsername(GetByUsernameReq) returns (GetByUsernameRes) {}
+}
+
+message CreateOrderReq {
+  string productId = 1;
+  string username = 2;
+  string date = 3;
+  int64 count = 4;
+  string id = 5;
+}
+
+message CreateOrderRes {
+  int64 status = 1;
+  string error = 2;
+}
+
+message CancelOrderReq {
+  string orderId = 1;
+  string username = 2;
+}
+
+message CancelOrderRes {
+  int64 status = 1;
+  string error = 2;
+  int64 remainAmount = 3;
+}
+
+// Validate
+
+message GetByUsernameReq {
+  string username = 1;
+
+}
+
+message Order {
+  string productId = 1;
+  string username = 2;
+  string date = 3;
+  int64 count = 4;
+  string id = 5;
+}
+
+message GetByUsernameRes {
+  repeated Order order = 1;
+}

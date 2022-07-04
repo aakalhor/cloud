@@ -1,0 +1,166 @@
+basePath: /
+definitions:
+  http.AddItem:
+    properties:
+      count:
+        type: integer
+      id:
+        type: string
+    type: object
+  http.RegisterCategory:
+    properties:
+      desc:
+        type: string
+      name:
+        type: string
+    type: object
+  http.RegisterItem:
+    properties:
+      categoryName:
+        type: string
+      count:
+        type: integer
+      name:
+        type: string
+      price:
+        type: integer
+      sex:
+        type: string
+    type: object
+host: localhost:8081
+info:
+  contact:
+    name: Amirali Kalhor
+    url: http://www.swagger.io/support
+  description: this is document of shop service
+  termsOfService: http://swagger.io/terms/
+  title: shop Swagger API
+  version: "1.0"
+paths:
+  /shop/add-item:
+    post:
+      consumes:
+      - application/json
+      description: add item
+      parameters:
+      - description: item
+        in: body
+        name: json
+        required: true
+        schema:
+          $ref: '#/definitions/http.AddItem'
+      - description: Bearer jwtToken
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: ""
+        "500":
+          description: ""
+      summary: add item
+      tags:
+      - shop
+  /shop/get-item:
+    get:
+      consumes:
+      - application/json
+      description: create item
+      parameters:
+      - description: item
+        in: body
+        name: json
+        required: true
+        schema:
+          $ref: '#/definitions/http.RegisterCategory'
+      - description: Bearer jwtToken
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: ""
+        "500":
+          description: ""
+      summary: register item
+      tags:
+      - shop
+  /shop/register-category:
+    post:
+      consumes:
+      - application/json
+      description: create category
+      parameters:
+      - description: item
+        in: body
+        name: json
+        required: true
+        schema:
+          $ref: '#/definitions/http.RegisterCategory'
+      - description: Bearer jwtToken
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: ""
+        "500":
+          description: ""
+      summary: register category
+      tags:
+      - shop
+  /shop/register-item:
+    post:
+      consumes:
+      - application/json
+      description: create item
+      parameters:
+      - description: item
+        in: body
+        name: json
+        required: true
+        schema:
+          $ref: '#/definitions/http.RegisterItem'
+      - description: Bearer jwtToken
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: ""
+        "500":
+          description: ""
+      summary: register item
+      tags:
+      - shop
+schemes:
+- http
+swagger: "2.0"
