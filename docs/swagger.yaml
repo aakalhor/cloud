@@ -1,0 +1,100 @@
+basePath: /
+definitions:
+  domain.Order:
+    properties:
+      count:
+        type: integer
+      date:
+        type: string
+      oid:
+        type: string
+      productId:
+        type: string
+      username:
+        type: string
+    type: object
+  http.RegisterOrder:
+    properties:
+      count:
+        type: integer
+      date:
+        type: string
+      productId:
+        type: string
+    type: object
+host: localhost:8081
+info:
+  contact:
+    name: Amirali Kalhor
+    url: http://www.swagger.io/support
+  description: this is document of order service
+  termsOfService: http://swagger.io/terms/
+  title: order Swagger API
+  version: "1.0"
+paths:
+  /order/get/:userId:
+    get:
+      consumes:
+      - application/json
+      description: get order
+      parameters:
+      - description: User ID
+        in: path
+        name: userId
+        required: true
+        type: string
+      - description: Bearer jwtToken
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Order'
+            type: array
+        "400":
+          description: ""
+        "500":
+          description: ""
+      summary: get order
+      tags:
+      - order
+  /order/register:
+    post:
+      consumes:
+      - application/json
+      description: create order
+      parameters:
+      - description: item
+        in: body
+        name: json
+        required: true
+        schema:
+          $ref: '#/definitions/http.RegisterOrder'
+      - description: Bearer jwtToken
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: ""
+        "500":
+          description: ""
+      summary: create order
+      tags:
+      - order
+schemes:
+- http
+swagger: "2.0"
